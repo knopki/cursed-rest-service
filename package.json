@@ -1,0 +1,47 @@
+{
+  "name": "poc-ts-io-ts-json-schema-openapi-redoc",
+  "version": "0.0.1",
+  "description": "From io-ts and typescript typing to JSON schema, OpenAPI and docs",
+  "license": "MIT",
+  "authors": "Sergey Korolev <korolev.srg@gmail.com>",
+  "engineStrict": true,
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "redoc-cli serve src/openapi.json",
+    "build": "yarn build:schemas && tsc",
+    "build:schemas": "node buildSchemas.js",
+    "build:redoc": "redoc-cli bundle src/openapi.json",
+    "clean:dist": "rimraf coverage/* lib/* tmp/* src/json-schema/*.json src/openapi.*",
+    "clean:node_modules": "rimraf node_modules",
+    "verify": "yarn build && yarn bundle && yarn lint"
+  },
+  "dependencies": {
+    "fp-ts": "1.15.0",
+    "fp-ts-contrib": "^0.0.2",
+    "io-ts": "1.8.4",
+    "io-ts-types": "0.4.6",
+    "monocle-ts": "1.7.1",
+    "newtype-ts": "0.2.4"
+  },
+  "devDependencies": {
+    "json-schema-to-openapi-schema": "^0.3.0",
+    "json-schema-traverse": "^0.4.1",
+    "json-schema": "^0.2.3",
+    "oas-validator": "^3.2.4",
+    "redoc-cli": "^0.8.3",
+    "rimraf": "^2.6.3",
+    "tsconfig-paths": "^3.8.0",
+    "typescript-json-schema": "^0.37.0",
+    "typescript": "^3.4.1",
+    "yaml": "^1.5.0"
+  },
+  "resolutions": {
+    "**/@marblejs/core/fp-ts": "1.15.0",
+    "**/@marblejs/middleware-io/io-ts": "1.8.4",
+    "**/fp-ts-contrib/fp-ts": "1.15.0",
+    "**/io-ts/fp-ts": "1.15.0",
+    "**/newtype-ts/fp-ts": "1.15.0"
+  }
+}

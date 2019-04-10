@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "./src",
+    "outDir": "./lib",
+    "allowJs": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "lib": ["esnext"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noLib": false,
+    "removeComments": false,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2017",
+    "plugins": [{
+      "name": "typescript-tslint-plugin",
+      "jsEnable": true,
+      "suppressWhileTypeErrorsPresent": true
+    }]
+  },
+  "include": ["./src", "./test"],
+  "exclude": ["src/**/*.spec.ts"]
+}

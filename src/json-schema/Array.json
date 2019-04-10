@@ -1,0 +1,142 @@
+{
+  "type": "object",
+  "properties": {
+    "null": {
+      "description": "Array of nulls",
+      "type": "array",
+      "items": {
+        "type": "null"
+      }
+    },
+    "string": {
+      "description": "Array of undefined\nArray of strings",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "number": {
+      "description": "Array of numbers",
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "boolean": {
+      "description": "Array of booleans",
+      "type": "array",
+      "items": {
+        "type": "boolean"
+      }
+    },
+    "object": {
+      "description": "Array of objects",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": true
+      }
+    },
+    "any": {
+      "description": "Array of any",
+      "type": "array",
+      "items": {}
+    },
+    "literalString": {
+      "description": "Array of literal string",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "literal"
+        ]
+      }
+    },
+    "literalNumber": {
+      "description": "Array of literal number",
+      "type": "array",
+      "items": {
+        "type": "number",
+        "enum": [
+          123
+        ]
+      }
+    },
+    "readonlyArray": {
+      "description": "Readonly array",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tuple": {
+      "description": "Tuple",
+      "maxItems": 2,
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "minItems": 2,
+      "additionalItems": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      }
+    },
+    "triple": {
+      "description": "triple",
+      "maxItems": 3,
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        }
+      ],
+      "minItems": 3,
+      "additionalItems": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "any",
+    "boolean",
+    "literalNumber",
+    "literalString",
+    "null",
+    "number",
+    "object",
+    "readonlyArray",
+    "string",
+    "triple",
+    "tuple"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

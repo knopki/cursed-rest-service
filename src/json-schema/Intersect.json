@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "required": {
+      "description": "Requered property",
+      "type": "string"
+    },
+    "optional": {
+      "description": "Optional property",
+      "type": "string"
+    }
+  },
+  "required": [
+    "required"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

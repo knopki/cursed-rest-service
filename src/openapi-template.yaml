@@ -1,0 +1,72 @@
+openapi: 3.0.2
+info:
+  title: ServiceName
+  version: 1.2.3
+  description: Service description
+  contact:
+    name: API Support
+    email: support@example.com
+    url: http://example.com/support
+tags:
+  - name: default
+paths:
+  /postSimpleReturnArray:
+    post:
+      summary: Post Simple and get Array
+      description: Post some Simple and get some Array in json
+      operationId: postSimpleReturnArray
+      tags:
+        - default
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Simple'
+      responses:
+        '200':
+          description: All okay
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Array'
+  /postIntersectReturnUnion:
+    post:
+      summary: Post Intersect and get Union
+      description: Post some Intersect and get some Union in json
+      operationId: postIntersectReturnUnion
+      tags:
+        - default
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Intersect'
+      responses:
+        '200':
+          description: All okay
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Union'
+  /postRecursiveReturnRecursive:
+    post:
+      summary: Post Recursive and get Recursive
+      description: Post some Recursive and get some Recursive in json
+      operationId: postRecursiveReturnRecursive
+      tags:
+        - default
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recursive1'
+      responses:
+        '200':
+          description: All okay
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recursive2'

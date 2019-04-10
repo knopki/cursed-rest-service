@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "properties": {
+    "null": {
+      "description": "Null type",
+      "type": "null"
+    },
+    "string": {
+      "description": "Undefined type\nString type",
+      "type": "string"
+    },
+    "number": {
+      "description": "Number type",
+      "type": "number"
+    },
+    "boolean": {
+      "description": "Boolean type",
+      "type": "boolean"
+    },
+    "object": {
+      "description": "Object type",
+      "type": "object",
+      "properties": {},
+      "additionalProperties": true
+    },
+    "any": {
+      "description": "Any type"
+    },
+    "literalString": {
+      "description": "Literal string",
+      "type": "string",
+      "enum": [
+        "literal"
+      ]
+    },
+    "literalNumber": {
+      "description": "Literal number",
+      "type": "number",
+      "enum": [
+        123
+      ]
+    }
+  },
+  "required": [
+    "any",
+    "boolean",
+    "literalNumber",
+    "literalString",
+    "null",
+    "number",
+    "object",
+    "string"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

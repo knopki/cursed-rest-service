@@ -1,0 +1,89 @@
+{
+  "description": "This is description",
+  "id": "Union#",
+  "title": "Union",
+  "type": "object",
+  "properties": {
+    "union": {
+      "description": "Union",
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "unionOfLiterals": {
+      "description": "Union of literals",
+      "enum": [
+        1,
+        2,
+        3
+      ],
+      "type": "number"
+    },
+    "keyOf": {
+      "description": "keyOf",
+      "enum": [
+        "bar",
+        "baz",
+        "foo"
+      ],
+      "type": "string"
+    },
+    "taggedUnion": {
+      "description": "Tagged union // TODO: ugly",
+      "anyOf": [
+        {
+          "$ref": "#/definitions/{kind:\"error\";message:string;}"
+        },
+        {
+          "$ref": "#/definitions/{kind:\"result\";count:number;}"
+        }
+      ]
+    }
+  },
+  "required": [
+    "keyOf",
+    "taggedUnion",
+    "union",
+    "unionOfLiterals"
+  ],
+  "definitions": {
+    "{kind:\"error\";message:string;}": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "error"
+          ]
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "message"
+      ]
+    },
+    "{kind:\"result\";count:number;}": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "result"
+          ]
+        },
+        "count": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "count",
+        "kind"
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

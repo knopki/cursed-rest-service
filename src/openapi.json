@@ -1,0 +1,626 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "ServiceName",
+    "version": "1.2.3",
+    "description": "Service description",
+    "contact": {
+      "name": "API Support",
+      "email": "support@example.com",
+      "url": "http://example.com/support"
+    }
+  },
+  "tags": [
+    {
+      "name": "default"
+    }
+  ],
+  "paths": {
+    "/postSimpleReturnArray": {
+      "post": {
+        "summary": "Post Simple and get Array",
+        "description": "Post some Simple and get some Array in json",
+        "operationId": "postSimpleReturnArray",
+        "tags": [
+          "default"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Simple"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "All okay",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Array"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/postIntersectReturnUnion": {
+      "post": {
+        "summary": "Post Intersect and get Union",
+        "description": "Post some Intersect and get some Union in json",
+        "operationId": "postIntersectReturnUnion",
+        "tags": [
+          "default"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Intersect"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "All okay",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Union"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/postRecursiveReturnRecursive": {
+      "post": {
+        "summary": "Post Recursive and get Recursive",
+        "description": "Post some Recursive and get some Recursive in json",
+        "operationId": "postRecursiveReturnRecursive",
+        "tags": [
+          "default"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recursive1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "All okay",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recursive2"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Array": {
+        "type": "object",
+        "properties": {
+          "null": {
+            "description": "Array of nulls",
+            "type": "array",
+            "items": {
+              "nullable": true
+            }
+          },
+          "string": {
+            "description": "Array of undefined\nArray of strings",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "number": {
+            "description": "Array of numbers",
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "boolean": {
+            "description": "Array of booleans",
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            }
+          },
+          "object": {
+            "description": "Array of objects",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          },
+          "any": {
+            "description": "Array of any",
+            "type": "array",
+            "items": {}
+          },
+          "literalString": {
+            "description": "Array of literal string",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "literal"
+              ]
+            }
+          },
+          "literalNumber": {
+            "description": "Array of literal number",
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                123
+              ]
+            }
+          },
+          "readonlyArray": {
+            "description": "Readonly array",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tuple": {
+            "description": "Tuple",
+            "maxItems": 2,
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            },
+            "minItems": 2,
+            "x-additionalItems": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "triple": {
+            "description": "triple",
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "minItems": 3,
+            "x-additionalItems": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "any",
+          "boolean",
+          "literalNumber",
+          "literalString",
+          "null",
+          "number",
+          "object",
+          "readonlyArray",
+          "string",
+          "triple",
+          "tuple"
+        ]
+      },
+      "Intersect": {
+        "type": "object",
+        "properties": {
+          "required": {
+            "description": "Requered property",
+            "type": "string"
+          },
+          "optional": {
+            "description": "Optional property",
+            "type": "string"
+          }
+        },
+        "required": [
+          "required"
+        ]
+      },
+      "Simple": {
+        "type": "object",
+        "properties": {
+          "null": {
+            "description": "Null type",
+            "nullable": true
+          },
+          "string": {
+            "description": "Undefined type\nString type",
+            "type": "string"
+          },
+          "number": {
+            "description": "Number type",
+            "type": "number"
+          },
+          "boolean": {
+            "description": "Boolean type",
+            "type": "boolean"
+          },
+          "object": {
+            "description": "Object type",
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true
+          },
+          "any": {
+            "description": "Any type"
+          },
+          "literalString": {
+            "description": "Literal string",
+            "type": "string",
+            "enum": [
+              "literal"
+            ]
+          },
+          "literalNumber": {
+            "description": "Literal number",
+            "type": "number",
+            "enum": [
+              123
+            ]
+          }
+        },
+        "required": [
+          "any",
+          "boolean",
+          "literalNumber",
+          "literalString",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "Union": {
+        "description": "This is description",
+        "title": "Union",
+        "type": "object",
+        "properties": {
+          "union": {
+            "description": "Union",
+            "type": "string",
+            "nullable": true
+          },
+          "unionOfLiterals": {
+            "description": "Union of literals",
+            "enum": [
+              1,
+              2,
+              3
+            ],
+            "type": "number"
+          },
+          "keyOf": {
+            "description": "keyOf",
+            "enum": [
+              "bar",
+              "baz",
+              "foo"
+            ],
+            "type": "string"
+          },
+          "taggedUnion": {
+            "description": "Tagged union // TODO: ugly",
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Union_0"
+              },
+              {
+                "$ref": "#/components/schemas/Union_1"
+              }
+            ]
+          }
+        },
+        "required": [
+          "keyOf",
+          "taggedUnion",
+          "union",
+          "unionOfLiterals"
+        ]
+      },
+      "Recursive1": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "Recursive1"
+            ]
+          },
+          "b": {
+            "$ref": "#/components/schemas/Recursive1_2"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "Recursive2": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "Recursive2"
+            ]
+          },
+          "a": {
+            "$ref": "#/components/schemas/Recursive2_3"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "Union_0": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "error"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "message"
+        ]
+      },
+      "Union_1": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "result"
+            ]
+          },
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "count",
+          "kind"
+        ]
+      },
+      "Union_2": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "Recursive2"
+            ]
+          },
+          "a": {
+            "$ref": "#/components/schemas/Union_3"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "Union_3": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "Recursive1"
+            ]
+          },
+          "b": {
+            "$ref": "#/components/schemas/Union_2"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "Recursive1_0": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "error"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "message"
+        ]
+      },
+      "Recursive1_1": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "result"
+            ]
+          },
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "count",
+          "kind"
+        ]
+      },
+      "Recursive1_2": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "Recursive2"
+            ]
+          },
+          "a": {
+            "$ref": "#/components/schemas/Recursive1_3"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "Recursive1_3": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "Recursive1"
+            ]
+          },
+          "b": {
+            "$ref": "#/components/schemas/Recursive1_2"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "Recursive2_0": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "error"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "message"
+        ]
+      },
+      "Recursive2_1": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "result"
+            ]
+          },
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "count",
+          "kind"
+        ]
+      },
+      "Recursive2_2": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "Recursive2"
+            ]
+          },
+          "a": {
+            "$ref": "#/components/schemas/Recursive2_3"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "Recursive2_3": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "Recursive1"
+            ]
+          },
+          "b": {
+            "$ref": "#/components/schemas/Recursive2_2"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      }
+    }
+  }
+}
